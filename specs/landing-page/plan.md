@@ -33,12 +33,15 @@ Keep the established cream / forest-green / Fraunces identity — no new palette
 - [x] Create `src/components/book/book-card.tsx` — cover-first card built on shadcn `Card` primitives (title, author, genre, price formatted in VND, `Rating`, `WishlistButton`), cover + title link to `/book/[id]`.
 
 ### Step 4 — Layout shell
-- [ ] Create `src/components/layout/navbar.tsx` — client component: sticky bar; brand → `/`; links Home + Books (`/book`); auth-aware right side (logged out → "Log In" button → `/login`; logged in → `DropdownMenu` with Account, Wishlist, Logout); subtle icon toggle button to flip `isAuthenticated`; mobile menu via `Sheet`.
-- [ ] Create `src/components/layout/footer.tsx` — server component: brand blurb, link columns (Books, Account, Wishlist, Cart, Login — only existing routes), copyright. No About/Contact.
+- [x] Create `src/components/layout/navbar.tsx` — client component: sticky bar; brand → `/`; links Home + Books (`/book`); auth-aware right side (logged out → "Log In" button → `/login`; logged in → `DropdownMenu` with Account, Wishlist, Logout); subtle icon toggle button to flip `isAuthenticated`; mobile menu via `Sheet`.
+  - Note: Base UI `render` prop used for Button-as-trigger and `Link`-as-`DropdownMenuItem` (no `asChild` in Base UI). Mobile sheet duplicates nav + auth actions; account dropdown and "Log in" button hidden below `md`.
+- [x] Create `src/components/layout/footer.tsx` — server component: brand blurb, link columns (Books, Account, Wishlist, Cart, Login — only existing routes), copyright. No About/Contact. Static `© 2026` (no `new Date()` to keep the site statically renderable).
+- Note: not mounted in layout yet — done in Step 6.
 
 ### Step 5 — Landing page
-- [ ] Create `src/components/landing/hero-banner.tsx` — server component: eyebrow + Fraunces headline + subheadline; primary CTA (Button rendered as `Link` → `/book`) and secondary CTA (→ `/collections`); signature cover-strip visual.
-- [ ] Rewrite `src/app/(public)/page.tsx` — server component composing `<HeroBanner />` + "Featured books" section rendering **6** `BookCard`s from mock data.
+- [x] Create `src/components/landing/hero-banner.tsx` — server component: eyebrow + Fraunces headline + subheadline; primary CTA (`Link` + `buttonVariants` → `/book`) and secondary CTA (→ `/collections`); signature fanned cover-strip visual (`books.slice(0, 7)`, overlapping `-ml` + alternating rotations, straighten on hover, `aria-hidden`).
+  - Note: used `buttonVariants` + `next/link` instead of `Button render={<Link/>}` to avoid stray `type="button"` on anchors.
+- [x] Rewrite `src/app/(public)/page.tsx` — server component composing `<HeroBanner />` + "Featured books" section rendering **6** `BookCard`s from mock data (`books.slice(0, 6)`, grid `2/3/6` cols).
 
 ### Step 6 — Mount the shell
 - [ ] Edit `src/app/layout.tsx` — wrap `{children}` in `<main className="flex-1">` between `<Navbar />` and `<Footer />` so the footer sits at the bottom site-wide; mount `<Toaster />`.
