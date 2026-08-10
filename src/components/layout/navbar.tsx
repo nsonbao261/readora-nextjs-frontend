@@ -78,6 +78,7 @@ export function Navbar() {
                     <Button
                       variant="ghost"
                       size="icon-sm"
+                      className="cursor-pointer"
                       aria-label="Account menu"
                     />
                   }
@@ -85,15 +86,26 @@ export function Navbar() {
                   <UserRoundIcon />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem render={<Link href="/account" />}>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    render={<Link href="/account" />}
+                  >
+                    <UserRoundIcon />
                     Account
                   </DropdownMenuItem>
-                  <DropdownMenuItem render={<Link href="/wishlist" />}>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    render={<Link href="/wishlist" />}
+                  >
                     <HeartIcon />
                     Wishlist
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem variant="destructive" onClick={logout}>
+                  <DropdownMenuItem
+                    variant="destructive"
+                    className="cursor-pointer"
+                    onClick={logout}
+                  >
                     <LogOutIcon />
                     Log out
                   </DropdownMenuItem>

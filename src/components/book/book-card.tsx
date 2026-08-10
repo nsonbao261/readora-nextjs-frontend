@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { Book } from "@/types/book";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -56,9 +55,8 @@ export function BookCard({
           <CardDescription>{book.author}</CardDescription>
         </Link>
         <Rating rating={book.rating} ratingCount={book.ratingCount} />
-        <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+        <div className="mt-auto pt-1">
           <span className="text-sm font-medium">{formatPrice(book.price)}</span>
-          <Badge variant="secondary">{book.genre}</Badge>
         </div>
       </CardContent>
     </Card>

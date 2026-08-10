@@ -50,7 +50,7 @@ Readora currently has no site shell and a static placeholder home page. This fea
 - Replaces the current placeholder hero.
 
 **FR-4 — Book Card**
-- Shows cover, title, author, genre, price, rating (stars + count).
+- Shows cover, title, author, price, rating (stars + count). (Genre lives on the `Book` model but is not displayed on the card.)
 - Wishlist button:
   - Logged in → toggles local wishlist state.
   - Logged out → prompts the user to log in; confirm redirects to `/login`, cancel does nothing.
