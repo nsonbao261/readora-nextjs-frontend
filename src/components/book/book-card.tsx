@@ -13,14 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Rating } from "@/components/book/rating";
 import { WishlistButton } from "@/components/book/wishlist-button";
 import { cn } from "@/lib/utils";
-
-// Formats a price as Vietnamese Dong (189000 → "189.000 ₫").
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  }).format(price);
-}
+import { formatPrice } from "@/lib/format";
 
 // Maps a badge key to its pill style on the cover.
 function badgeVariant(badge: BookBadge): "secondary" | "destructive" {

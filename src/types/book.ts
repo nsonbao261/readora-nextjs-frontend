@@ -20,6 +20,8 @@ export type Book = {
   ratingCount: number;
   // ISO date string (e.g. "2026-03-14"); powers the published-date filters.
   publishedDate: string;
+  // 1–3 sentence synopsis shown on the detail page.
+  description: string;
   badges: BookBadge[];
   // Present for discounted (On Sale) items; `price` is the effective sale price.
   originalPrice?: number;

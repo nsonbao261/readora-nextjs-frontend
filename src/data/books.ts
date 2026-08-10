@@ -1,10 +1,13 @@
 import type { Book } from "@/types/book";
 
 // Mock catalog powering the featured grid, book cards, and the `/book`
-// catalog page (UI-only, no backend). 34 books spread across ~10 genres, all
+// catalog page (UI-only, no backend). 36 books spread across ~10 genres, all
 // three badges, sale pricing, and published dates from <6mo to >3y so every
 // search/filter/sort/pagination behavior is demonstrable. The first 8 keep
 // distinct covers for the home hero strip (first 7) and featured grid (first 6).
+// The last two (The Mapmaker's Oath, The Echo of Distant Light) share authors
+// with earlier books so the detail page's same-author "Similar Books" tier is
+// reachable.
 export const books: Book[] = [
   {
     id: "cartographers-daughter",
@@ -16,6 +19,8 @@ export const books: Book[] = [
     rating: 4.6,
     ratingCount: 1284,
     publishedDate: "2025-09-18",
+    description:
+      "A daughter inherits her missing father's atlas and discovers the maps draw themselves to places that shouldn't exist. A fantasy adventure about grief, geography, and the courage to chart your own course.",
     badges: ["bestseller"],
   },
   {
@@ -28,6 +33,8 @@ export const books: Book[] = [
     rating: 4.2,
     ratingCount: 856,
     publishedDate: "2024-06-30",
+    description:
+      "Two estranged sisters return to their coastal hometown after their grandmother's death and must reckon with the tides that pulled them apart. A quiet novel about family, memory, and what the sea keeps.",
     badges: [],
   },
   {
@@ -40,6 +47,8 @@ export const books: Book[] = [
     rating: 4.4,
     ratingCount: 2103,
     publishedDate: "2026-01-12",
+    description:
+      "In a village where glass trees bloom once a century, a young horticulturist guards the last orchard from speculators who would harvest it for profit. A luminous literary fable about beauty, greed, and regeneration.",
     badges: ["new-release", "bestseller"],
   },
   {
@@ -47,11 +56,13 @@ export const books: Book[] = [
     title: "Midnight on Cedar Lane",
     author: "June Okafor",
     cover: "/assets/books/book4.png",
-    genres: ["Mystery", "Thriller"    ],
+    genres: ["Mystery", "Thriller"],
     price: 139000,
     rating: 3.9,
     ratingCount: 512,
     publishedDate: "2025-04-02",
+    description:
+      "When a body is found on the quietest street in town, retired detective Mabel Owusu unearths decades of secrets hidden behind the picket fences. A slow-burn mystery that proves nobody really knows their neighbors.",
     badges: [],
   },
   {
@@ -64,6 +75,8 @@ export const books: Book[] = [
     rating: 4.7,
     ratingCount: 963,
     publishedDate: "2026-06-20",
+    description:
+      "A field biologist documents the vanishing species of a shrinking wilderness — and the stubborn people fighting to save it. Part science, part elegy, part love letter to the places we're losing.",
     badges: [],
   },
   {
@@ -76,6 +89,8 @@ export const books: Book[] = [
     rating: 4.3,
     ratingCount: 1745,
     publishedDate: "2026-05-28",
+    description:
+      "An observatory technician intercepts a signal that rewrites the history of the stars — and the future of her own life. A cerebral space drama about what we see and what we refuse to look at.",
     badges: ["new-release"],
   },
   {
@@ -88,6 +103,8 @@ export const books: Book[] = [
     rating: 4.5,
     ratingCount: 689,
     publishedDate: "2026-02-01",
+    description:
+      "In 1940s Italy, a teenaged soprano flees her village with her grandmother's recipe book and an impossible dream of singing in Milan. A sweeping historical novel about flight in every sense.",
     badges: [],
   },
   {
@@ -100,6 +117,8 @@ export const books: Book[] = [
     rating: 4.1,
     ratingCount: 402,
     publishedDate: "2024-10-20",
+    description:
+      "A celebrated essayist writes candid letters to the versions of himself he used to be. Intimate, funny, and quietly devastating reflections on ambition, love, and becoming.",
     badges: [],
   },
   {
@@ -112,6 +131,8 @@ export const books: Book[] = [
     rating: 4.0,
     ratingCount: 731,
     publishedDate: "2026-07-21",
+    description:
+      "A marine biologist returns to the archipelago of her childhood and finds her first love — and a truth she's been avoiding. A romance that moves with the rhythms of the sea.",
     badges: ["new-release"],
   },
   {
@@ -124,6 +145,8 @@ export const books: Book[] = [
     rating: 4.2,
     ratingCount: 984,
     publishedDate: "2025-10-03",
+    description:
+      "A forensic document examiner finds a forged signature that implicates her own brother. A twisty mystery about ink, identity, and the lies we leave in writing.",
     badges: [],
   },
   {
@@ -136,6 +159,8 @@ export const books: Book[] = [
     rating: 4.4,
     ratingCount: 1201,
     publishedDate: "2026-03-17",
+    description:
+      "A master clockmaker is found dead with every clock in his workshop stopped at 3:17. A precision-built thriller where every second counts.",
     badges: ["bestseller"],
   },
   {
@@ -148,6 +173,8 @@ export const books: Book[] = [
     rating: 3.8,
     ratingCount: 458,
     publishedDate: "2024-02-14",
+    description:
+      "The owner of a failing harbor café falls for the stranger who keeps showing up at closing time with stories and a secret. A warm, slow-burn romance set under moonlit piers.",
     badges: [],
   },
   {
@@ -160,6 +187,8 @@ export const books: Book[] = [
     rating: 4.8,
     ratingCount: 2367,
     publishedDate: "2026-08-02",
+    description:
+      "When the last station above Earth begins to fall, the crew must choose who gets the single escape pod. A claustrophobic, high-stakes thriller in orbit.",
     badges: ["new-release", "bestseller"],
   },
   {
@@ -173,6 +202,8 @@ export const books: Book[] = [
     rating: 4.5,
     ratingCount: 1582,
     publishedDate: "2025-07-11",
+    description:
+      "In a world where books are burned, the last librarian guards a library that only opens at night. A spellbinding fantasy about memory, resistance, and the stories we protect.",
     badges: ["on-sale"],
   },
   {
@@ -185,6 +216,8 @@ export const books: Book[] = [
     rating: 4.0,
     ratingCount: 637,
     publishedDate: "2026-03-30",
+    description:
+      "A photographer recovering from a loss spends one luminous season documenting the people of a fading lake town. A tender novel about how we keep what we love.",
     badges: [],
   },
   {
@@ -198,6 +231,8 @@ export const books: Book[] = [
     rating: 4.3,
     ratingCount: 289,
     publishedDate: "2025-11-28",
+    description:
+      "A collection of poems and short essays on night, silk, and the conversations we have with ourselves. Luxurious, melancholy, and unsparing.",
     badges: ["on-sale"],
   },
   {
@@ -210,6 +245,8 @@ export const books: Book[] = [
     rating: 4.6,
     ratingCount: 1874,
     publishedDate: "2023-05-09",
+    description:
+      "A neuroscientist's practical case for doing nothing — and the surprising productivity of stillness. Grounded, warm, and quietly radical.",
     badges: ["bestseller"],
   },
   {
@@ -222,6 +259,8 @@ export const books: Book[] = [
     rating: 4.1,
     ratingCount: 1147,
     publishedDate: "2026-04-08",
+    description:
+      "A prince raised to inherit nothing sets out to reclaim his family's ash-buried kingdom. An epic YA fantasy about fire, duty, and second chances.",
     badges: ["new-release"],
   },
   {
@@ -235,6 +274,8 @@ export const books: Book[] = [
     rating: 4.4,
     ratingCount: 856,
     publishedDate: "2025-12-20",
+    description:
+      "A street thief who can fold paper into anything steals a crown that refuses to leave her hands. A dazzling fantasy about the power of making things.",
     badges: ["bestseller", "on-sale"],
   },
   {
@@ -247,6 +288,8 @@ export const books: Book[] = [
     rating: 3.7,
     ratingCount: 321,
     publishedDate: "2026-06-11",
+    description:
+      "A grieving man accepts a job writing epitaphs for a village that buries its winters. A creeping horror novel about grief that refuses to stay buried.",
     badges: ["new-release"],
   },
   {
@@ -260,6 +303,8 @@ export const books: Book[] = [
     rating: 4.2,
     ratingCount: 908,
     publishedDate: "2026-05-02",
+    description:
+      "An English teacher on a remote island falls for a fisherman whose past the tide won't return. A tender historical romance about distance and home.",
     badges: ["on-sale"],
   },
   {
@@ -272,6 +317,8 @@ export const books: Book[] = [
     rating: 4.5,
     ratingCount: 543,
     publishedDate: "2025-03-29",
+    description:
+      "A linguist travels to the world's last speakers, documenting the final words of dying languages. A profound meditation on memory, culture, and silence.",
     badges: [],
   },
   {
@@ -285,6 +332,8 @@ export const books: Book[] = [
     rating: 3.9,
     ratingCount: 412,
     publishedDate: "2026-07-01",
+    description:
+      "A sleep scientist invents a lullaby that rewires dreams — and can't stop people from using it. A tense near-future thriller about rest, control, and obsession.",
     badges: ["new-release", "on-sale"],
   },
   {
@@ -297,6 +346,8 @@ export const books: Book[] = [
     rating: 4.6,
     ratingCount: 1302,
     publishedDate: "2025-06-17",
+    description:
+      "In 1930s Prague, a midwife begins noticing patterns of babies born at the same hour — and a conspiracy she can't report. A haunting historical mystery.",
     badges: ["bestseller"],
   },
   {
@@ -309,6 +360,8 @@ export const books: Book[] = [
     rating: 4.2,
     ratingCount: 198,
     publishedDate: "2025-10-15",
+    description:
+      "A slim volume of poems for the hours between midnight and dawn. Quiet, exact, and startlingly kind.",
     badges: [],
   },
   {
@@ -322,6 +375,8 @@ export const books: Book[] = [
     rating: 4.3,
     ratingCount: 764,
     publishedDate: "2026-02-27",
+    description:
+      "A cyclist's memoir of the 18,000-mile detour that became the point. Witty, exhausting, and full-hearted travel writing.",
     badges: ["bestseller", "on-sale"],
   },
   {
@@ -334,6 +389,8 @@ export const books: Book[] = [
     rating: 3.9,
     ratingCount: 534,
     publishedDate: "2025-08-19",
+    description:
+      "A florist who never stays and a chef who always leaves meet at the same violet hour every evening. A sweet, aching romance about timing.",
     badges: [],
   },
   {
@@ -346,6 +403,8 @@ export const books: Book[] = [
     rating: 4.4,
     ratingCount: 675,
     publishedDate: "2026-05-06",
+    description:
+      "A critic's essays on the books that built — and broke — him. Sharp, tender, and infectiously in love with reading.",
     badges: ["new-release"],
   },
   {
@@ -358,6 +417,8 @@ export const books: Book[] = [
     rating: 4.0,
     ratingCount: 489,
     publishedDate: "2025-09-02",
+    description:
+      "A forensic accountant suspects a small town's charity is a front — and the town suspects her right back. A paranoid, clever thriller about who we trust.",
     badges: [],
   },
   {
@@ -370,6 +431,8 @@ export const books: Book[] = [
     rating: 4.7,
     ratingCount: 2210,
     publishedDate: "2026-01-29",
+    description:
+      "A cartographer maps the ruins of stars, only to find the stars are falling on purpose. An epic space fantasy about grief, navigation, and hope.",
     badges: ["bestseller"],
   },
   {
@@ -382,6 +445,8 @@ export const books: Book[] = [
     rating: 4.1,
     ratingCount: 903,
     publishedDate: "2023-09-21",
+    description:
+      "Why the loudest movements fail and the quiet ones change everything. A calm, evidence-based call for slower, steadier change.",
     badges: [],
   },
   {
@@ -395,6 +460,8 @@ export const books: Book[] = [
     rating: 4.3,
     ratingCount: 1120,
     publishedDate: "2026-04-15",
+    description:
+      "Two teens who can only meet during the new moon exchange letters across a rooftop. A dreamy YA romance about longing, fear, and almost.",
     badges: ["new-release", "on-sale"],
   },
   {
@@ -407,6 +474,8 @@ export const books: Book[] = [
     rating: 4.4,
     ratingCount: 712,
     publishedDate: "2022-11-04",
+    description:
+      "A glassblower's workshop holds the conversations she never had. A spare, luminous novel about silence and sound.",
     badges: [],
   },
   {
@@ -420,6 +489,36 @@ export const books: Book[] = [
     rating: 4.1,
     ratingCount: 534,
     publishedDate: "2021-03-15",
+    description:
+      "A lighthouse keeper on a forgotten harbor keeps a log of the ships that never came. A haunting historical novel about waiting and letting go.",
     badges: ["on-sale"],
+  },
+  {
+    id: "the-mapmakers-oath",
+    title: "The Mapmaker's Oath",
+    author: "Mira Voss",
+    cover: "/assets/books/book2.png",
+    genres: ["Fantasy", "Adventure"],
+    price: 199000,
+    rating: 4.5,
+    ratingCount: 412,
+    publishedDate: "2026-09-02",
+    description:
+      "A junior cartographer takes an oath never to map a lie — then is ordered to draw a kingdom that doesn't exist. Mira Voss's swashbuckling follow-up to The Cartographer's Daughter, about truth, borders, and the blank spaces on every map.",
+    badges: ["new-release"],
+  },
+  {
+    id: "the-echo-of-distant-light",
+    title: "The Echo of Distant Light",
+    author: "Rowan Hale",
+    cover: "/assets/books/book13.png",
+    genres: ["Science Fiction"],
+    price: 185000,
+    rating: 4.4,
+    ratingCount: 638,
+    publishedDate: "2026-08-15",
+    description:
+      "A radio astronomer keeps hearing a signal with her own voice in it — sent from a star that went dark a century ago. Rowan Hale's time-bending novel about messages, distance, and the futures we broadcast to ourselves.",
+    badges: ["new-release"],
   },
 ];

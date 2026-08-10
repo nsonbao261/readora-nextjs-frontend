@@ -1,9 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { HeartIcon, LogInIcon, LogOutIcon, MenuIcon, UserRoundIcon } from "lucide-react";
+import {
+  HeartIcon,
+  LogInIcon,
+  LogOutIcon,
+  MenuIcon,
+  ShoppingCartIcon,
+  UserRoundIcon,
+} from "lucide-react";
 
 import { useAuthStore } from "@/stores/auth-store";
+import { useCartStore, selectCount } from "@/stores/cart-store";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -35,6 +43,7 @@ export function Navbar() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const toggle = useAuthStore((state) => state.toggle);
   const logout = useAuthStore((state) => state.logout);
+  const cartCount = useCartStore((state) => selectCount(state.items));
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
@@ -59,6 +68,21 @@ export function Navbar() {
         </div>
 
         <div className="ml-auto flex items-center gap-1.5">
+          <Link
+            href="/cart"
+            aria-label="View cart"
+            className="relative rounded-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+          >
+            <Button variant="ghost" size="icon-sm" aria-hidden="true">
+              <ShoppingCartIcon />
+            </Button>
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
+                {cartCount}
+              </span>
+            )}
+          </Link>
+
           <Button
             variant="ghost"
             size="icon-sm"
