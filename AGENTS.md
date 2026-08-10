@@ -29,15 +29,17 @@ src/
 │   └── (checkout)/            # → /cart, /checkout, /shipping, /payment
 ├── components/
 │   ├── ui/                    # shadcn primitives (alert, avatar, badge, button, card, dialog,
-│   │                          #   dropdown-menu, input, select, separator, sheet, skeleton, tabs)
-│   ├── book/                  # (empty) book-specific components
-│   ├── layout/                # (empty) header / footer / nav
-│   ├── shared/                # (empty) shared components
-│   └── theme-provider.tsx     # next-themes wrapper
-├── data/                      # (empty) mock data
-├── lib/                       # utils.ts → cn() helper
-├── stores/                    # (empty) zustand stores
-└── types/                     # (empty) shared types
+│   │                          #   dropdown-menu, input, label, select, separator, sheet, skeleton, tabs, textarea)
+│   ├── book/                  # book-specific components (book-card, rating, wishlist-button, cart-actions,
+│   │                          #   add-to-collection-button, shipping-info, similar-books, reviews-section, review-form)
+│   ├── layout/                # header / footer / nav (navbar, footer)
+│   ├── providers/             # app providers (theme-provider → next-themes wrapper)
+│   ├── shared/                # shared components (toaster, login-gate-dialog)
+│   └── catalog/               # catalog components (search-bar, sort-control, filter-panel, pagination)
+├── data/                      # mock data (books, reviews)
+├── lib/                       # utils.ts → cn() helper; format.ts, similar-books.ts, catalog.ts
+├── stores/                    # zustand stores (auth, cart, collections)
+└── types/                     # shared types (book, review)
 ```
 
 Path alias: `@/*` → `src/*`

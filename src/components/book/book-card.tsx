@@ -1,27 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import type { Book } from "@/types/book";
+import type { Book, BookBadge } from "@/types/book";
+import { BADGE_LABELS } from "@/types/book";
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Rating } from "@/components/book/rating";
 import { WishlistButton } from "@/components/book/wishlist-button";
 import { cn } from "@/lib/utils";
+import { formatPrice } from "@/lib/format";
 
-// Formats a price as Vietnamese Dong (189000 → "189.000 ₫").
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-  }).format(price);
+// Maps a badge key to its pill style on the cover.
+function badgeVariant(badge: BookBadge): "secondary" | "destructive" {
+  return badge === "on-sale" ? "destructive" : "secondary";
 }
 
 // Cover-first book card used in grids and the featured section. Cover and
-// title link to `/book/[id]`; the wishlist button overlays the cover corner.
+// title link to `/book/[id]`; the wishlist button overlays the cover's
+// top-right and store-badge pills sit on the top-left.
 export function BookCard({
   book,
   className,
@@ -43,6 +44,15 @@ export function BookCard({
           className="bg-muted object-cover transition-transform duration-500 group-hover/book:scale-105"
         />
       </Link>
+      {book.badges.length > 0 && (
+        <div className="absolute top-2 left-2 flex flex-col items-start gap-1">
+          {book.badges.map((badge) => (
+            <Badge key={badge} variant={badgeVariant(badge)}>
+              {BADGE_LABELS[badge]}
+            </Badge>
+          ))}
+        </div>
+      )}
       <div className="absolute top-2 right-2">
         <WishlistButton bookTitle={book.title} />
       </div>
@@ -56,7 +66,21 @@ export function BookCard({
         </Link>
         <Rating rating={book.rating} ratingCount={book.ratingCount} />
         <div className="mt-auto pt-1">
-          <span className="text-sm font-medium">{formatPrice(book.price)}</span>
+          {book.genres.length > 0 && (
+            <p className="text-xs text-muted-foreground">
+              {book.genres.join(" · ")}
+            </p>
+          )}
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-sm font-medium">
+              {formatPrice(book.price)}
+            </span>
+            {book.originalPrice !== undefined && (
+              <span className="text-xs text-muted-foreground line-through">
+                {formatPrice(book.originalPrice)}
+              </span>
+            )}
+          </div>
         </div>
       </CardContent>
     </Card>

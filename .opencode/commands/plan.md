@@ -15,3 +15,4 @@ With Specification Documment, Draft a plan to implement current feature
 ## Note
 
 - Do not implement plan without permission
+- At the start, show user full Specification Document and ask for confirmation. Do not proceed without confirmation.

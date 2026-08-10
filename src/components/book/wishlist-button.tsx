@@ -17,8 +17,18 @@ import {
 } from "@/components/ui/dialog";
 
 // Wishlist toggle for a book card. Signed-in users get a local toggle with
-// toast feedback; guests are gated behind a "log in to save" dialog.
-export function WishlistButton({ bookTitle }: { bookTitle: string }) {
+// toast feedback; guests are gated behind a "log in to save" dialog. On cards
+// it renders as an icon-only ghost button; passing `label` renders it as a
+// labeled outline button (detail page).
+export function WishlistButton({
+  bookTitle,
+  label,
+  size = label ? "default" : "icon-sm",
+}: {
+  bookTitle: string;
+  label?: string;
+  size?: "icon-sm" | "sm" | "default" | "lg";
+}) {
   const router = useRouter();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const [wishlisted, setWishlisted] = useState(false);
@@ -46,8 +56,9 @@ export function WishlistButton({ bookTitle }: { bookTitle: string }) {
   return (
     <>
       <Button
-        variant={wishlisted ? "secondary" : "ghost"}
-        size="icon-sm"
+        variant={label ? "outline" : wishlisted ? "secondary" : "ghost"}
+        size={size}
+        className="cursor-pointer"
         aria-label={
           wishlisted
             ? `Remove ${bookTitle} from wishlist`
@@ -57,6 +68,7 @@ export function WishlistButton({ bookTitle }: { bookTitle: string }) {
         onClick={handleToggle}
       >
         <HeartIcon className={wishlisted ? "fill-current" : undefined} />
+        {label && <span>{label}</span>}
       </Button>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
