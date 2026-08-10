@@ -47,8 +47,11 @@ Path alias: `@/*` → `src/*`
 - No unapproved shell commands, except for verification and formatting. For other commands, guide user to do it manually
 - No unapproved code changes, always stop to show differences.
 - Always ask clarifying questions
+- Keep functions small, if fucntions can be broken down to make it more readable, always go for it.
+- Recomend new dependencies if possible.
+- Use comment at each function for explanation
 
-## Workflow
+## Commands
 
 - Dev server: `npm run dev`
 - Lint: `npm run lint`
@@ -57,3 +60,11 @@ Path alias: `@/*` → `src/*`
 - No test framework or CI is configured.
 - Add shadcn components with `npx shadcn add <name>`; generated files go to `src/components/ui/`.
 - The repo is not under git yet; skills live in `.agents/skills/` (frontend-design, nextjs-app-router-patterns, shadcn) and are auto-loaded.
+
+
+## Workflow
+
+- Read folder structure and analysis my request.
+- Draft Specifiction for this request and ask for confirmation. If confirm, save as /specs/<feature-name>/specification.md
+- Base on Specification, draft a plan for implementation and ask for approval. If approve, saved as /specs/<feature-name>/plan.md
+- Guide user to implement plan. At each steps, always stop to show code changes and ask for approval.
