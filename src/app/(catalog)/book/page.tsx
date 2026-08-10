@@ -60,8 +60,8 @@ export default async function CatalogPage({
       </header>
 
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <SearchBar initialValue={state.q} className="w-full sm:max-w-sm" />
-        <SortControl field={state.sortField} dir={state.sortDir} />
+        <SearchBar state={state} className="w-full sm:max-w-sm" />
+        <SortControl state={state} />
       </div>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[240px_1fr]">

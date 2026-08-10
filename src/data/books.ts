@@ -47,7 +47,7 @@ export const books: Book[] = [
     title: "Midnight on Cedar Lane",
     author: "June Okafor",
     cover: "/assets/books/book4.png",
-    genres: ["Mystery", "Thriller"],
+    genres: ["Mystery", "Thriller"    ],
     price: 139000,
     rating: 3.9,
     ratingCount: 512,

@@ -43,15 +43,15 @@ Same cream / forest-green / Fraunces identity as the landing page. The catalog s
 - [x] Rewrite `src/app/(catalog)/book/page.tsx` as async server component: read `searchParams` → parse → filter/sort/paginate → render toolbar + filter panel + grid of `BookCard`s + result summary ("Showing X–Y of Z books") + pagination. Empty state ("No books match your search") with a Clear filters action.
 
 ### Step 7 — Client controls (`src/components/catalog/`)
-- [ ] `search-bar.tsx` — controlled input; submits on Enter/Search → URL with `q` + page reset (FR-1.2/1.3); × clears and applies immediately (FR-1.4).
-- [ ] `sort-control.tsx` — `Select` (field) + direction toggle button with arrow icon; active field+dir visible (FR-2.4); change → page reset.
-- [ ] `filter-panel.tsx` — local draft state seeded from applied state; Apply validates Min ≤ Max then pushes URL (page reset); Clear all resets + applies immediately (FR-3.8); active-count badge next to Apply.
+- [x] `search-bar.tsx` — controlled input; submits on Enter/Search → URL with `q` + page reset (FR-1.2/1.3); × clears and applies immediately (FR-1.4).
+- [x] `sort-control.tsx` — `Select` (field) + direction toggle button with arrow icon; active field+dir visible (FR-2.4); change → page reset.
+- [x] `filter-panel.tsx` — local draft state seeded from applied state; Apply validates Min ≤ Max then pushes URL (page reset); Clear all resets + applies immediately (FR-3.8); active-count badge next to Apply.
 
 ### Step 8 — Pagination
-- [ ] `src/components/catalog/pagination.tsx` — server component: First/Prev (left), Next/Last (right), numbered items with ellipsis for large ranges; disabled state styling on page 1 / last page (FR-4.2).
+- [x] `src/components/catalog/pagination.tsx` — server component: First/Prev (left), Next/Last (right), numbered items with ellipsis for large ranges; disabled state styling on page 1 / last page (FR-4.2).
 
 ### Step 9 — Verification
-- [ ] `npm run lint` · `npx tsc --noEmit` · `npm run build` + manual QA (below).
+- [x] `npm run lint` · `npx tsc --noEmit` · `npm run build` + manual QA (below).
 
 ---
 

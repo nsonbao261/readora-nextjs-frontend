@@ -4,7 +4,7 @@ export type BookBadge = "new-release" | "bestseller" | "on-sale";
 // Human-readable labels for the badge keys (used on cards, filters, summaries).
 export const BADGE_LABELS: Record<BookBadge, string> = {
   "new-release": "New Release",
-  bestseller: "Bestseller",
+  bestseller: "Best Seller",
   "on-sale": "On Sale",
 };
 
