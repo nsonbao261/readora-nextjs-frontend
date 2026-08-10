@@ -58,6 +58,7 @@ export function WishlistButton({
       <Button
         variant={label ? "outline" : wishlisted ? "secondary" : "ghost"}
         size={size}
+        className="cursor-pointer"
         aria-label={
           wishlisted
             ? `Remove ${bookTitle} from wishlist`

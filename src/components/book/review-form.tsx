@@ -106,8 +106,8 @@ export function ReviewForm({ bookTitle }: { bookTitle: string }) {
         />
 
         <div className="flex items-center gap-2">
-          <Button type="submit" disabled={submitted}>
-            {submitted ? "Submitted" : "Submit review"}
+          <Button type="submit" className="cursor-pointer" disabled={submitted}>
+            {submitted ? "Submitted" : "Submit"}
           </Button>
           {submitted && (
             <p className="text-sm text-muted-foreground">Thanks for sharing!</p>

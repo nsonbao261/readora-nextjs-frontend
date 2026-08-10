@@ -33,11 +33,16 @@ export function CartActions({ book }: { book: Book }) {
 
   return (
     <div className="flex flex-wrap gap-2">
-      <Button size="lg" onClick={handleBuyNow}>
+      <Button size="lg" className="cursor-pointer" onClick={handleBuyNow}>
         <ZapIcon />
         Buy Now
       </Button>
-      <Button size="lg" variant="outline" onClick={handleAddToCart}>
+      <Button
+        size="lg"
+        variant="outline"
+        className="cursor-pointer"
+        onClick={handleAddToCart}
+      >
         <ShoppingCartIcon />
         Add to Cart
       </Button>

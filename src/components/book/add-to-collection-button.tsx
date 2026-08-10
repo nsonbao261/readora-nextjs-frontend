@@ -134,7 +134,12 @@ export function AddToCollectionButton({ book }: { book: Book }) {
 
   return (
     <>
-      <Button variant="outline" size="lg" onClick={handleOpen}>
+      <Button
+        variant="outline"
+        size="lg"
+        className="cursor-pointer"
+        onClick={handleOpen}
+      >
         <FolderPlusIcon />
         Add to Collection
       </Button>
