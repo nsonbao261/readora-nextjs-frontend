@@ -48,15 +48,16 @@ Same cream / forest-green / Fraunces identity as the rest of the shop. `/auth` i
 - [x] `use-resend-cooldown.ts` (client hook, added): shared 30s countdown for the verification + forgot-password resend buttons (dedupes logic across both).
 
 ### Step 5 — Navbar integration
-- [ ] Edit `src/components/layout/navbar.tsx`: logged out → **Log in** button → `/auth?mode=login` (desktop + mobile sheet, FR-7.2); remove the `toggle` preview button; logged in → `Avatar` with user initials + dropdown (Account, Wishlist, **Admin dashboard** → `/admin` only when `user.role === "admin"`, Log out) (FR-7.2); mobile sheet gets the same entries. `logout` keeps working (AC-9).
+- [x] Edit `src/components/layout/navbar.tsx`: logged out → **Log in** button → `/auth?mode=login` (desktop + mobile sheet, FR-7.2); remove the leftover `LogOutIcon` preview button; logged in → `Avatar` with user initials + dropdown (Account, Wishlist, **Admin dashboard** → `/admin` only when `user.role === "admin"`, Log out) (FR-7.2); mobile sheet gets the same entries plus a user-name header row. `logout` keeps working (AC-9).
 
 ### Step 6 — Remaining consumers
-- [ ] Edit `src/components/layout/footer.tsx`: `Log in` → `/auth?mode=login`, `Create an account` → `/auth?mode=register` (FR-7.3).
-- [ ] Edit `src/components/shared/login-gate-dialog.tsx`: CTA `router.push("/auth?mode=login")` (FR-7.4).
-- [ ] Edit `src/components/book/wishlist-button.tsx`: gate CTA → `/auth?mode=login` (FR-7.4).
+- [x] Edit `src/components/layout/footer.tsx`: `Log in` → `/auth?mode=login`, `Create an account` → `/auth?mode=register` (FR-7.3).
+- [x] Edit `src/components/shared/login-gate-dialog.tsx`: CTA `router.push("/auth?mode=login")` (FR-7.4).
+- [x] Edit `src/components/book/wishlist-button.tsx`: gate CTA → `/auth?mode=login` (FR-7.4).
+- [x] Grep sweep: no stale `/login`/`/register` links remain; both routes still redirect (FR-1.3).
 
 ### Step 7 — Verification
-- [ ] `npm run lint` · `npx tsc --noEmit` · `npm run build` + manual QA (below) (AC-10).
+- [x] `npm run lint` · `npx tsc --noEmit` · `npm run build` — all pass (AC-10); all routes registered (`/auth` ƒ dynamic, `/forget-password` ○ static). Manual QA remains per the Testing strategy below.
 
 ---
 

@@ -3,14 +3,16 @@
 import Link from "next/link";
 import {
   HeartIcon,
+  LayoutDashboardIcon,
   LogOutIcon,
   MenuIcon,
   ShoppingCartIcon,
   UserRoundIcon,
 } from "lucide-react";
 
-import { useAuthStore, selectIsAuthenticated } from "@/stores/auth-store";
+import { useAuthStore } from "@/stores/auth-store";
 import { useCartStore, selectCount } from "@/stores/cart-store";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -35,10 +37,22 @@ const navLinks = [
   { label: "Books", href: "/book" },
 ];
 
-// Site-wide sticky navigation. Reads the simulated auth state and renders the
-// right account controls accordingly (no backend exists yet).
+// Derives the avatar initials (max 2) from a display name, e.g. "Readora
+// Admin" → "RA".
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+}
+
+// Site-wide sticky navigation. Reads the real auth user and renders the right
+// account controls: guests get a Log in link, signed-in users get an initials
+// avatar + dropdown with an Admin dashboard entry for admins (FR-7.2).
 export function Navbar() {
-  const isAuthenticated = useAuthStore(selectIsAuthenticated);
+  const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
   const cartCount = useCartStore((state) => selectCount(state.items));
 
@@ -80,29 +94,22 @@ export function Navbar() {
             )}
           </Link>
 
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={logout}
-            aria-label="Sign out"
-          >
-            <LogOutIcon />
-          </Button>
-
-          {isAuthenticated ? (
+          {user ? (
             <div className="hidden md:block">
               <DropdownMenu>
                 <DropdownMenuTrigger
                   render={
                     <Button
                       variant="ghost"
-                      size="icon-sm"
-                      className="cursor-pointer"
+                      size="icon"
+                      className="cursor-pointer rounded-full p-0"
                       aria-label="Account menu"
                     />
                   }
                 >
-                  <UserRoundIcon />
+                  <Avatar>
+                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                  </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem
@@ -119,6 +126,15 @@ export function Navbar() {
                     <HeartIcon />
                     Wishlist
                   </DropdownMenuItem>
+                  {user.role === "admin" && (
+                    <DropdownMenuItem
+                      className="cursor-pointer"
+                      render={<Link href="/admin" />}
+                    >
+                      <LayoutDashboardIcon />
+                      Admin dashboard
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     variant="destructive"
@@ -132,7 +148,7 @@ export function Navbar() {
               </DropdownMenu>
             </div>
           ) : (
-            <Link href="/login" className="hidden md:block">
+            <Link href="/auth?mode=login" className="hidden md:block">
               <Button variant="outline" size="sm">
                 Log in
               </Button>
@@ -167,8 +183,14 @@ export function Navbar() {
                   ))}
                 </div>
                 <Separator />
-                {isAuthenticated ? (
+                {user ? (
                   <div className="flex flex-col gap-1 px-4">
+                    <div className="flex items-center gap-2 px-3 py-2">
+                      <Avatar size="sm">
+                        <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                      </Avatar>
+                      <span className="text-sm font-medium">{user.name}</span>
+                    </div>
                     <Link
                       href="/account"
                       className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
@@ -181,6 +203,14 @@ export function Navbar() {
                     >
                       Wishlist
                     </Link>
+                    {user.role === "admin" && (
+                      <Link
+                        href="/admin"
+                        className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                      >
+                        Admin dashboard
+                      </Link>
+                    )}
                     <button
                       type="button"
                       onClick={logout}
@@ -191,7 +221,7 @@ export function Navbar() {
                   </div>
                 ) : (
                   <div className="px-4 pt-1">
-                    <Link href="/login">
+                    <Link href="/auth?mode=login">
                       <Button variant="outline" size="sm" className="w-full">
                         Log in
                       </Button>

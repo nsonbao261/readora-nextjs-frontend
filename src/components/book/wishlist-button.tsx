@@ -84,7 +84,9 @@ export function WishlistButton({
             <Button variant="outline" onClick={() => setDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={() => router.push("/login")}>Log in</Button>
+            <Button onClick={() => router.push("/auth?mode=login")}>
+              Log in
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -110,9 +110,9 @@ export function LoginForm({ redirect }: { redirect?: string }) {
             className="absolute top-1/2 right-2 -translate-y-1/2 rounded-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             {showPassword ? (
-              <EyeOffIcon className="size-4" />
-            ) : (
               <EyeIcon className="size-4" />
+            ) : (
+              <EyeOffIcon className="size-4" />
             )}
           </button>
         </div>

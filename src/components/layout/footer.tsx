@@ -23,8 +23,8 @@ const linkColumns = [
   {
     title: "Login",
     links: [
-      { label: "Log in", href: "/login" },
-      { label: "Create an account", href: "/register" },
+      { label: "Log in", href: "/auth?mode=login" },
+      { label: "Create an account", href: "/auth?mode=register" },
     ],
   },
 ];

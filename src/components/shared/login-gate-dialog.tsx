@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/dialog";
 
 // Reusable auth gate: renders a dialog prompting guests to log in, with a
-// CTA that navigates to `/login`. Used by the review form and the add-to-
-// collection flow (WishlistButton keeps its own copy).
+// CTA that navigates to `/auth?mode=login`. Used by the review form and the
+// add-to-collection flow (WishlistButton keeps its own copy).
 export function LoginGateDialog({
   open,
   onOpenChange,
@@ -39,7 +39,9 @@ export function LoginGateDialog({
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button onClick={() => router.push("/login")}>Log in</Button>
+          <Button onClick={() => router.push("/auth?mode=login")}>
+            Log in
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
