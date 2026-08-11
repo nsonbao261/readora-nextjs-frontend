@@ -11,7 +11,7 @@ import {
 import { toast } from "sonner";
 
 import type { Book } from "@/types/book";
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, selectIsAuthenticated } from "@/stores/auth-store";
 import { useCollectionsStore } from "@/stores/collections-store";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -45,7 +45,7 @@ import { LoginGateDialog } from "@/components/shared/login-gate-dialog";
 // dialog; signed-in users pick one or more collections (or create a new one)
 // in a right-side sheet, then Save adds the book with a confirmation toast.
 export function AddToCollectionButton({ book }: { book: Book }) {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useAuthStore(selectIsAuthenticated);
   const collections = useCollectionsStore((state) => state.collections);
   const addBookToCollections = useCollectionsStore(
     (state) => state.addBookToCollections,

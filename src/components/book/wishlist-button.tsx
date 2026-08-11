@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { HeartIcon } from "lucide-react";
 import { toast } from "sonner";
 
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, selectIsAuthenticated } from "@/stores/auth-store";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -30,7 +30,7 @@ export function WishlistButton({
   size?: "icon-sm" | "sm" | "default" | "lg";
 }) {
   const router = useRouter();
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useAuthStore(selectIsAuthenticated);
   const [wishlisted, setWishlisted] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -84,7 +84,9 @@ export function WishlistButton({
             <Button variant="outline" onClick={() => setDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={() => router.push("/login")}>Log in</Button>
+            <Button onClick={() => router.push("/auth?mode=login")}>
+              Log in
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

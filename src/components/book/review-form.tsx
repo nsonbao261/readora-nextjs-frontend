@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, selectIsAuthenticated } from "@/stores/auth-store";
 import { LoginGateDialog } from "@/components/shared/login-gate-dialog";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 // form resets into a submitted state so duplicates can't be posted
 // (FR-8.3/8.4/8.5).
 export function ReviewForm({ bookTitle }: { bookTitle: string }) {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useAuthStore(selectIsAuthenticated);
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [content, setContent] = useState("");
