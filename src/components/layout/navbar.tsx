@@ -3,14 +3,13 @@
 import Link from "next/link";
 import {
   HeartIcon,
-  LogInIcon,
   LogOutIcon,
   MenuIcon,
   ShoppingCartIcon,
   UserRoundIcon,
 } from "lucide-react";
 
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, selectIsAuthenticated } from "@/stores/auth-store";
 import { useCartStore, selectCount } from "@/stores/cart-store";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -37,11 +36,9 @@ const navLinks = [
 ];
 
 // Site-wide sticky navigation. Reads the simulated auth state and renders the
-// right account controls accordingly; the subtle icon toggle previews the
-// signed-in state (no backend exists yet).
+// right account controls accordingly (no backend exists yet).
 export function Navbar() {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const toggle = useAuthStore((state) => state.toggle);
+  const isAuthenticated = useAuthStore(selectIsAuthenticated);
   const logout = useAuthStore((state) => state.logout);
   const cartCount = useCartStore((state) => selectCount(state.items));
 
@@ -86,12 +83,10 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon-sm"
-            onClick={toggle}
-            aria-label={
-              isAuthenticated ? "Sign out (preview)" : "Sign in (preview)"
-            }
+            onClick={logout}
+            aria-label="Sign out"
           >
-            {isAuthenticated ? <LogOutIcon /> : <LogInIcon />}
+            <LogOutIcon />
           </Button>
 
           {isAuthenticated ? (
