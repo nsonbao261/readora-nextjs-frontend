@@ -6,6 +6,7 @@ import {
   LayoutDashboardIcon,
   LogOutIcon,
   MenuIcon,
+  PackageIcon,
   ShoppingCartIcon,
   UserRoundIcon,
 } from "lucide-react";
@@ -121,10 +122,17 @@ export function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="cursor-pointer"
-                    render={<Link href="/wishlist" />}
+                    render={<Link href="/account/wishlist" />}
                   >
                     <HeartIcon />
                     Wishlist
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    render={<Link href="/account/orders" />}
+                  >
+                    <PackageIcon />
+                    Orders
                   </DropdownMenuItem>
                   {user.role === "admin" && (
                     <DropdownMenuItem
@@ -198,10 +206,16 @@ export function Navbar() {
                       Account
                     </Link>
                     <Link
-                      href="/wishlist"
+                      href="/account/wishlist"
                       className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
                     >
                       Wishlist
+                    </Link>
+                    <Link
+                      href="/account/orders"
+                      className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                    >
+                      Orders
                     </Link>
                     {user.role === "admin" && (
                       <Link

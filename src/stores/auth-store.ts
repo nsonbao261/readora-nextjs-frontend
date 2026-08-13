@@ -13,6 +13,13 @@ export type RegisterInput = {
   dateOfBirth: string;
 };
 
+// Editable profile fields; email is read-only and never part of the patch.
+export type ProfilePatch = {
+  name: string;
+  phone: string;
+  dateOfBirth: string;
+};
+
 // Internal credential map (email -> plaintext demo password), seeded with the
 // demo accounts and extended on register. Kept out of the state so it never
 // leaks into components.
@@ -33,6 +40,13 @@ type AuthState = {
   googleLogin: () => void;
   // Clears the signed-in user.
   logout: () => void;
+  // Updates the signed-in user's editable fields (name/phone/dob) in both the
+  // active user and registeredUsers so the navbar avatar stays in sync.
+  updateProfile: (patch: ProfilePatch) => void;
+  // Validates the current password against the in-memory map and sets a new
+  // one. Returns false for Google accounts or a wrong current password
+  // (no account lockout).
+  changePassword: (current: string, next: string) => boolean;
 };
 
 export const useAuthStore = create<AuthState>((set, get) => ({
@@ -96,6 +110,26 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     }),
 
   logout: () => set({ user: null }),
+
+  updateProfile: (patch) =>
+    set((state) => {
+      if (!state.user) return state;
+      const updated = { ...state.user, ...patch };
+      return {
+        user: updated,
+        registeredUsers: state.registeredUsers.map((u) =>
+          u.id === updated.id ? updated : u,
+        ),
+      };
+    }),
+
+  changePassword: (current, next) => {
+    const user = get().user;
+    if (!user || user.provider !== "credentials") return false;
+    if (passwords.get(user.email) !== current) return false;
+    passwords.set(user.email, next);
+    return true;
+  },
 }));
 
 // Derived selector: true while a user is signed in.
