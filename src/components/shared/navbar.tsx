@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import {
+  FolderIcon,
   HeartIcon,
   LayoutDashboardIcon,
+  LockKeyholeIcon,
   LogOutIcon,
+  MapPinIcon,
   MenuIcon,
   PackageIcon,
   ShoppingCartIcon,
@@ -36,6 +39,18 @@ import {
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Books", href: "/book" },
+];
+
+// Signed-in account menu (desktop dropdown + mobile sheet), mirroring the
+// dashboard section nav. "Account" lands on the overview page (FR-1.4).
+const accountMenuItems = [
+  { label: "Account", href: "/account", icon: LayoutDashboardIcon },
+  { label: "Profile", href: "/account/profile", icon: UserRoundIcon },
+  { label: "Password", href: "/account/password", icon: LockKeyholeIcon },
+  { label: "Collections", href: "/account/collections", icon: FolderIcon },
+  { label: "Wishlist", href: "/account/wishlist", icon: HeartIcon },
+  { label: "Addresses", href: "/account/addresses", icon: MapPinIcon },
+  { label: "Orders", href: "/account/orders", icon: PackageIcon },
 ];
 
 // Derives the avatar initials (max 2) from a display name, e.g. "Readora
@@ -113,27 +128,19 @@ export function Navbar() {
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    render={<Link href="/account" />}
-                  >
-                    <UserRoundIcon />
-                    Account
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    render={<Link href="/account/wishlist" />}
-                  >
-                    <HeartIcon />
-                    Wishlist
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    render={<Link href="/account/orders" />}
-                  >
-                    <PackageIcon />
-                    Orders
-                  </DropdownMenuItem>
+                  {accountMenuItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <DropdownMenuItem
+                        key={item.href}
+                        className="cursor-pointer"
+                        render={<Link href={item.href} />}
+                      >
+                        <Icon />
+                        {item.label}
+                      </DropdownMenuItem>
+                    );
+                  })}
                   {user.role === "admin" && (
                     <DropdownMenuItem
                       className="cursor-pointer"
@@ -199,24 +206,19 @@ export function Navbar() {
                       </Avatar>
                       <span className="text-sm font-medium">{user.name}</span>
                     </div>
-                    <Link
-                      href="/account"
-                      className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
-                    >
-                      Account
-                    </Link>
-                    <Link
-                      href="/account/wishlist"
-                      className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
-                    >
-                      Wishlist
-                    </Link>
-                    <Link
-                      href="/account/orders"
-                      className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
-                    >
-                      Orders
-                    </Link>
+                    {accountMenuItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                        >
+                          <Icon className="size-4" />
+                          {item.label}
+                        </Link>
+                      );
+                    })}
                     {user.role === "admin" && (
                       <Link
                         href="/admin"
