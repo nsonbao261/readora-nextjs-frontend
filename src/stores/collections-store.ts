@@ -19,6 +19,8 @@ type CollectionsState = {
   renameCollection: (id: string, name: string) => void;
   // Deletes a collection entirely.
   deleteCollection: (id: string) => void;
+  // Removes a single book from a collection (keeps the collection record).
+  removeBookFromCollection: (collectionId: string, bookId: string) => void;
 };
 
 // Seed ids are stable so seeded books can be demo'd out of the box.
@@ -54,6 +56,17 @@ export const useCollectionsStore = create<CollectionsState>((set) => ({
     set((state) => ({
       collections: state.collections.filter(
         (collection) => collection.id !== id,
+      ),
+    })),
+  removeBookFromCollection: (collectionId, bookId) =>
+    set((state) => ({
+      collections: state.collections.map((collection) =>
+        collection.id === collectionId
+          ? {
+              ...collection,
+              bookIds: collection.bookIds.filter((id) => id !== bookId),
+            }
+          : collection,
       ),
     })),
 }));

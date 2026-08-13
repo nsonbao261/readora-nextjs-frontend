@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" role="img" aria-label="Map placeholder">
+  <!-- SWAP: Replace with a real Google Maps embed when Maps integration lands (FR-7.1). -->
+  <rect width="400" height="200" fill="#f6f3ea"/>
+  <g stroke="#e4dec9" stroke-width="1">
+    <line x1="50" y1="0" x2="50" y2="200"/><line x1="100" y1="0" x2="100" y2="200"/>
+    <line x1="150" y1="0" x2="150" y2="200"/><line x1="200" y1="0" x2="200" y2="200"/>
+    <line x1="250" y1="0" x2="250" y2="200"/><line x1="300" y1="0" x2="300" y2="200"/>
+    <line x1="350" y1="0" x2="350" y2="200"/><line x1="0" y1="40" x2="400" y2="40"/>
+    <line x1="0" y1="80" x2="400" y2="80"/><line x1="0" y1="120" x2="400" y2="120"/>
+    <line x1="0" y1="160" x2="400" y2="160"/>
+  </g>
+  <g stroke="#d3cbb0" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M0 75C130 75 150 150 400 150"/>
+    <path d="M110 0C110 70 80 120 80 200"/>
+    <path d="M260 200C260 130 320 90 400 90"/>
+  </g>
+  <path d="M230 45c-11 0-20 9-20 20 0 15 20 32 20 32s20-17 20-32c0-11-9-20-20-20z" fill="#1c3d2e"/>
+  <circle cx="230" cy="65" r="8" fill="#f6f3ea"/>
+</svg>
