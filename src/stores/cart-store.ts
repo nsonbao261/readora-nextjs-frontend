@@ -24,6 +24,10 @@ type CartState = {
   addItem: (book: NewCartItem) => void;
   // Removes a line item entirely.
   removeItem: (bookId: string) => void;
+  // Raises a line item's quantity by 1.
+  increaseQuantity: (bookId: string) => void;
+  // Lowers a line item's quantity by 1, never below 1.
+  decreaseQuantity: (bookId: string) => void;
   // Clears the whole cart.
   clear: () => void;
 };
@@ -48,6 +52,22 @@ export const useCartStore = create<CartState>((set) => ({
   removeItem: (bookId) =>
     set((state) => ({
       items: state.items.filter((item) => item.bookId !== bookId),
+    })),
+  increaseQuantity: (bookId) =>
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.bookId === bookId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item,
+      ),
+    })),
+  decreaseQuantity: (bookId) =>
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.bookId === bookId
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+          : item,
+      ),
     })),
   clear: () => set({ items: [] }),
 }));
