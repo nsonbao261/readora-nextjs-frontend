@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { useAuthStore } from "@/stores/auth-store";
+import { authHrefFromCurrent } from "@/components/auth/auth-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
@@ -45,9 +46,13 @@ export function AccountShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Guests get sent to login; a skeleton shows while the effect runs.
+  // Guests get sent to login (returning to this page after signing in); a
+  // skeleton shows while the effect runs.
   useEffect(() => {
-    if (!user) router.replace("/auth?mode=login");
+    if (!user) {
+      const { pathname, search } = window.location;
+      router.replace(authHrefFromCurrent("login", pathname, search));
+    }
   }, [user, router]);
 
   if (!user) {

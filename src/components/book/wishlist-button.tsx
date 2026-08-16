@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { useAuthStore, selectIsAuthenticated } from "@/stores/auth-store";
 import { Button } from "@/components/ui/button";
+import { authHrefFromCurrent } from "@/components/auth/auth-utils";
 import {
   Dialog,
   DialogContent,
@@ -53,6 +54,13 @@ export function WishlistButton({
     });
   }
 
+  // Sends guests to login, carrying the current page as the post-auth
+  // redirect so they return where they left off.
+  function goToLogin() {
+    const { pathname, search } = window.location;
+    router.push(authHrefFromCurrent("login", pathname, search));
+  }
+
   return (
     <>
       <Button
@@ -84,7 +92,7 @@ export function WishlistButton({
             <Button variant="outline" onClick={() => setDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={() => router.push("/auth?mode=login")}>
+            <Button onClick={goToLogin}>
               Log in
             </Button>
           </DialogFooter>
