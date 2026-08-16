@@ -1,7 +1,16 @@
 import Link from "next/link";
 
+import { AuthLink } from "@/components/auth/auth-link";
+import type { AuthMode } from "@/components/auth/auth-utils";
+
+// Footer link entry; auth entries carry a `mode` so they render an AuthLink
+// that preserves the current page as the post-auth redirect.
+type FooterLink = { label: string; href: string; mode?: AuthMode };
+
+type FooterColumn = { title: string; links: FooterLink[] };
+
 // Footer link columns; links only to routes that already exist.
-const linkColumns = [
+const linkColumns: FooterColumn[] = [
   {
     title: "Books",
     links: [
@@ -23,8 +32,8 @@ const linkColumns = [
   {
     title: "Login",
     links: [
-      { label: "Log in", href: "/auth?mode=login" },
-      { label: "Create an account", href: "/auth?mode=register" },
+      { label: "Log in", href: "/auth?mode=login", mode: "login" },
+      { label: "Create an account", href: "/auth?mode=register", mode: "register" },
     ],
   },
 ];
@@ -51,12 +60,21 @@ export function Footer() {
               <ul className="mt-3 space-y-2">
                 {column.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.mode ? (
+                      <AuthLink
+                        mode={link.mode}
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                      >
+                        {link.label}
+                      </AuthLink>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

@@ -14,9 +14,23 @@ export function authHref(mode: AuthMode, redirect?: string): string {
   return query ? `/auth?${query}` : "/auth";
 }
 
+// Builds a /auth href that carries the current page (path + search) as the
+// redirect target, so users return to where they left off after signing in.
+export function authHrefFromCurrent(
+  mode: AuthMode,
+  pathname: string,
+  search: string,
+): string {
+  return authHref(mode, `${pathname}${search}`);
+}
+
 // Role-aware post-auth redirect: admins always land on /admin; customers go
-// to the redirect param or the default home (FR-1.4, FR-7.7).
+// to the redirect param (internal paths only, avoiding open redirects) or the
+// default home (FR-1.4, FR-7.7).
 export function resolveRedirect(user: User, redirectParam?: string): string {
   if (user.role === "admin") return "/admin";
-  return redirectParam || DEFAULT_REDIRECT;
+  if (redirectParam?.startsWith("/") && !redirectParam.startsWith("//")) {
+    return redirectParam;
+  }
+  return DEFAULT_REDIRECT;
 }

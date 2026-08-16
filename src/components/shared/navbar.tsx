@@ -16,6 +16,7 @@ import {
 
 import { useAuthStore } from "@/stores/auth-store";
 import { useCartStore, selectCount } from "@/stores/cart-store";
+import { AuthLink } from "@/components/auth/auth-link";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -163,11 +164,11 @@ export function Navbar() {
               </DropdownMenu>
             </div>
           ) : (
-            <Link href="/auth?mode=login" className="hidden md:block">
+            <AuthLink mode="login" className="hidden md:block">
               <Button variant="outline" size="sm">
                 Log in
               </Button>
-            </Link>
+            </AuthLink>
           )}
 
           <div className="md:hidden">
@@ -237,11 +238,11 @@ export function Navbar() {
                   </div>
                 ) : (
                   <div className="px-4 pt-1">
-                    <Link href="/auth?mode=login">
+                    <AuthLink mode="login">
                       <Button variant="outline" size="sm" className="w-full">
                         Log in
                       </Button>
-                    </Link>
+                    </AuthLink>
                   </div>
                 )}
               </SheetContent>

@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { ShoppingCartIcon } from "lucide-react";
+import { toast } from "sonner";
 
 import type { Book, BookBadge } from "@/types/book";
 import { BADGE_LABELS } from "@/types/book";
@@ -10,8 +14,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Rating } from "@/components/book/rating";
 import { WishlistButton } from "@/components/book/wishlist-button";
+import { useCartStore } from "@/stores/cart-store";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/format";
 
@@ -30,6 +36,20 @@ export function BookCard({
   book: Book;
   className?: string;
 }) {
+  const addItem = useCartStore((state) => state.addItem);
+
+  // Pushes the book into the cart store (increments if already present) and
+  // confirms with a toast, mirroring the detail-page Add to Cart action.
+  function handleAddToCart() {
+    addItem({
+      bookId: book.id,
+      title: book.title,
+      cover: book.cover,
+      price: book.price,
+    });
+    toast.success(`Added "${book.title}" to your cart`);
+  }
+
   return (
     <Card className={cn("group/book relative pt-0", className)}>
       <Link
@@ -71,15 +91,26 @@ export function BookCard({
               {book.genres.join(" · ")}
             </p>
           )}
-          <div className="mt-1 flex items-baseline gap-2">
-            <span className="text-sm font-medium">
-              {formatPrice(book.price)}
-            </span>
-            {book.originalPrice !== undefined && (
-              <span className="text-xs text-muted-foreground line-through">
-                {formatPrice(book.originalPrice)}
+          <div className="mt-2 flex items-center justify-between gap-2">
+            <div className="flex items-baseline gap-2">
+              <span className="text-sm font-medium">
+                {formatPrice(book.price)}
               </span>
-            )}
+              {book.originalPrice !== undefined && (
+                <span className="text-xs text-muted-foreground line-through">
+                  {formatPrice(book.originalPrice)}
+                </span>
+              )}
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="cursor-pointer"
+              aria-label={`Add ${book.title} to cart`}
+              onClick={handleAddToCart}
+            >
+              <ShoppingCartIcon />
+            </Button>
           </div>
         </div>
       </CardContent>
