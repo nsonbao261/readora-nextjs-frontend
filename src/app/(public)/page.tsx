@@ -18,8 +18,8 @@ export default function Home() {
             Hand-picked from the shelf — six titles worth your time.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
-          {books.slice(0, 6).map((book) => (
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+          {books.slice(0, 5).map((book) => (
             <BookCard key={book.id} book={book} />
           ))}
         </div>

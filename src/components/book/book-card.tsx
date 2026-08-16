@@ -110,7 +110,6 @@ export function BookCard({
               onClick={handleAddToCart}
             >
               <ShoppingCartIcon />
-              Add
             </Button>
           </div>
         </div>
