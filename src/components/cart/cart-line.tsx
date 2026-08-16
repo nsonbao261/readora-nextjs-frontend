@@ -55,7 +55,7 @@ export function CartLine({ item }: { item: CartItem }) {
               size="icon-sm"
               className="cursor-pointer"
               aria-label={`Reduce quantity of ${item.title}`}
-              disabled={item.quantity <= 1}
+              // disabled={item.quantity <= 1}
               onClick={() => decreaseQuantity(item.bookId)}
             >
               <MinusIcon />
